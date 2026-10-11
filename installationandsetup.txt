@@ -1,0 +1,93 @@
+================================================================================
+METIN2 ŞABLON TABANLI SOHBET OKUYUCU - KURULUM
+================================================================================
+
+Gereksinim : Python 3.9+ (kurulu olduğu varsayılıyor)
+Platform   : Windows 10 / 11
+
+Bu kılavuz, Python kurulu bir sistemi olan kullanıcı içindir.
+Proje klasörü varsayımı: C:\<Download>\watcher
+(Örnek: C:\Users\<Username>\Downloads\watcher)
+
+
+--------------------------------------------------------------------------------
+KURULUM
+--------------------------------------------------------------------------------
+
+1) İndirilenler klasörüne git:
+
+       cd C:\<Download>\watcher
+
+   Örnek:
+
+       cd C:\Users\<Username>\Downloads\watcher
+
+2) Sanal ortamı oluştur:
+
+       python -m venv venv
+
+3) Sanal ortamı aktifleştir:
+
+       venv\Scripts\activate
+
+   Başarılıysa satır başında "(venv)" görünür:
+
+       (venv) C:\Users\<Username>\Downloads\watcher>
+
+4) Bağımlılıkları kur:
+
+       pip install -r requirements.txt --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org
+
+   (trusted-host parametreleri, kurumsal ağ / antivirüs kaynaklı SSL
+    sertifika hatalarını önler. SSL hatası almıyorsan normal
+    "pip install -r requirements.txt" de yeterlidir.)
+
+5) Kurulumu doğrula:
+
+       python -c "import mss, numpy, cv2, pyautogui, win32gui, tkinter; print('Hepsi OK')"
+
+   Çıktı "Hepsi OK" olmalı.
+
+6) Programı çalıştır:
+
+       python watcher.py
+
+--------------------------------------------------------------------------------
+NOTLAR
+--------------------------------------------------------------------------------
+
+- Sanal ortam her yeni CMD penceresinde tekrar aktifleştirilmelidir:
+
+      venv\Scripts\activate
+
+  CMD kapatıldığında venv de kapanır.
+
+- Kapatmak için:
+
+      deactivate
+
+- SSL sertifika hatası alırsan, kurulum komutuna her zaman şu ekleri koy:
+
+      --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org
+
+- Kalıcı SSL ayarı için (bir kere yapılır):
+  Proje klasöründe "venv\pip.ini" dosyası oluştur ve içine şunu yaz:
+
+      [global]
+      trusted-host = pypi.org
+                     pypi.python.org
+                     files.pythonhosted.org
+
+  Böylece bir daha uzun komut yazmak zorunda kalmazsın.
+
+- İlk çalıştırmada otomatik oluşan dosyalar:
+
+      templates\        (klasör — balık mesajı fotoğrafları)
+      templates.json    (dosya — şablon listesi)
+
+--------------------------------------------------------------------------------
+SONRAKI ADIM
+--------------------------------------------------------------------------------
+
+Kurulum tamamlandıktan sonra programın nasıl kullanılacağını
+öğrenmek için README.md dosyasına bakın.
